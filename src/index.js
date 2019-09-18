@@ -133,9 +133,9 @@ const props = {
   lineYTickValues: [25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275],
   leftAxis: "METRIC TONS",
   rightAxis: "US$ PER TON",
-  lineColors: ["#68A300", "#FFB100", "#0092CC", "#0092CC", "#2A6800"],
+  lineColors: ["#CD0D15", "#2A6800", "purple", "#0092CC", "#2A6800"],
   barColors: ["#68A300", "#FFB100", "#0092CC", "#CD0D15", "#2A6800"],
-  height: "700px"
+  height: "500px"
 };
 
 ReactDOM.render(<App {...props} />, document.getElementById("root"));
