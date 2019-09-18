@@ -2,8 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-const barYTickValues = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200];
-const lineYTickValues = [25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275];
 const lineData = [
   {
     id: "Key 1",
@@ -104,14 +102,14 @@ const barData = [
   {
     id: "sept",
     "Key 1": 136,
-    "key 2": 149,
-    "key 3": 37
+    "Key 2": 149,
+    "Key 3": 37
   },
   {
     id: "oct",
-    "key 1": 60,
-    "key 2": 149,
-    "key 3": 55
+    "Key 1": 60,
+    "Key 2": 149,
+    "Key 3": 55
   },
   {
     id: "nov",
@@ -127,18 +125,17 @@ const barData = [
   }
 ];
 
-ReactDOM.render(
-  <App
-    keys={["Key 1", "Key 2", "Key 3"]}
-    lineData={lineData}
-    barData={barData}
-    lineYTickValues={lineYTickValues}
-    barYTickValues={barYTickValues}
-    chartTitle={"Monthly Coverage"}
-    leftAxis={"METRIC TONS"}
-    rightAxis={"US$ PER TON"}
-    lineColors={["#68A300", "#FFB100", "#CD0D15", "#0092CC", "#2A6800"]}
-    barColors={["#68A300", "#FFB100", "#CD0D15", "#0092CC", "#2A6800"]}
-  />,
-  document.getElementById("root")
-);
+const props = {
+  keys: ["Key 1", "Key 2", "Key 3"],
+  lineData: lineData,
+  barData: barData,
+  barYTickValues: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200],
+  lineYTickValues: [25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275],
+  leftAxis: "METRIC TONS",
+  rightAxis: "US$ PER TON",
+  lineColors: ["#68A300", "#FFB100", "#0092CC", "#0092CC", "#2A6800"],
+  barColors: ["#68A300", "#FFB100", "#0092CC", "#CD0D15", "#2A6800"],
+  height: "700px"
+};
+
+ReactDOM.render(<App {...props} />, document.getElementById("root"));
