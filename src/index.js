@@ -4,14 +4,10 @@ import App from "./App";
 
 const barYTickValues = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200];
 const lineYTickValues = [25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275];
-
 const lineData = [
   {
-    id: "Japan",
-    color: "pink",
-    key: "pink",
+    id: "Key 1",
     data: [
-      { x: null, y: null },
       {
         x: "june",
         y: 31
@@ -39,14 +35,11 @@ const lineData = [
       {
         x: "dec",
         y: 261
-      },
-      { x: "", y: null }
+      }
     ]
   },
   {
-    id: "China",
-    color: "red",
-    key: "red",
+    id: "Key 2",
     data: [
       {
         x: "june",
@@ -67,9 +60,7 @@ const lineData = [
     ]
   },
   {
-    id: "India",
-    color: "green",
-    key: "green",
+    id: "Key 3",
     data: [
       {
         x: "aug",
@@ -143,6 +134,11 @@ ReactDOM.render(
     barData={barData}
     lineYTickValues={lineYTickValues}
     barYTickValues={barYTickValues}
+    chartTitle={"Monthly Coverage"}
+    leftAxis={"METRIC TONS"}
+    rightAxis={"US$ PER TON"}
+    lineColors={["#68A300", "#FFB100", "#CD0D15", "#0092CC", "#2A6800"]}
+    barColors={["#68A300", "#FFB100", "#CD0D15", "#0092CC", "#2A6800"]}
   />,
   document.getElementById("root")
 );

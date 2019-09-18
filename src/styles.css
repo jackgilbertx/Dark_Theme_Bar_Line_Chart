@@ -9,7 +9,6 @@
   height: 700px;
   width: 1000px;
   position: absolute;
-  back
 }
 
 .line {
@@ -19,51 +18,49 @@
 }
 
 .title {
+  font-size: 110%;
   position: absolute;
-  top: 10px;
+  top: 3%;
   left: 50%;
   font-weight: bold;
   font-family: arial;
   transform: translateX(-50%);
   color: #eee;
 }
-.legend{
+.legend {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   display: flex;
-  color:#fff;
-  position:absolute;
-  top:96%;
+  color: #fff;
+  position: absolute;
+  top: 96%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: .8em;
-  
+  font-size: 0.8em;
 }
-.line-items{
+.legend-bar {
   display: flex;
 }
-.bar-items{
+.legend-line {
   display: flex;
-
 }
-.legend-item{
+.legend-item {
   display: flex;
   margin-right: 18px;
 }
 
-.marker{
+.marker {
   margin-right: 5px;
 }
-
-.bar-marker{
+.bar-marker {
   height: 18px;
   width: 18px;
 }
-.line-marker{
+.line-marker {
   height: 15px;
   width: 15px;
   border: solid 2px;
 }
-.item-name{
+.legend-item-name {
   margin-top: 3px;
 }

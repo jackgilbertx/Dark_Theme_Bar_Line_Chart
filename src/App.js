@@ -3,71 +3,48 @@ import { ResponsiveBar } from "@nivo/bar";
 import { ResponsiveLine } from "@nivo/line";
 import "./styles.css";
 
-function App({ keys, lineData, barData, lineYTickValues, barYTickValues }) {
+function App({
+  keys,
+  lineData,
+  barData,
+  lineYTickValues,
+  barYTickValues,
+  chartTitle,
+  rightAxis,
+  leftAxis,
+  lineColors,
+  barColors
+}) {
   const tickTheme = {
     textColor: "#eee"
   };
-  const dataX = [0.4, 1.2, 2.386, 3.319, 4.252, 5.185, 6.118, 7.051, 7.984];
-  const barIds = barData.map(d => {
-    return d.country;
-  });
 
-  // console.log(barIds);
+  lineData[0].data.unshift({ x: "", y: null });
+  lineData[0].data.push({ x: null, y: null });
 
-  for (let x of lineData) {
-    for (let y of x.data) {
-      // console.log(y.x);
-      if (barIds.indexOf(y.x) !== -1) {
-        let v = dataX[barIds.indexOf(y.x)];
-        y.x = v;
-      }
-    }
-  }
-
-  const lineColors = lineData.map(line => {
-    // turn into regular colors array
-    return line.color;
-  });
-
-  const barColors = ["red", "blue", "green", "yellow", "brown"];
-  // const barDataLen = barData.length;
-  // const barColorsLen = barColors.length;
-
-  // const defaultColorsBar =
-  //   barColorsLen > barDataLen
-  //     ? barColors.slice(0, barDataLen)
-  //     : { ...barColors };
-
-  // barData.forEach((color, index) => {
-  //   barData[index].color = defaultColorsBar[index];
-  // });
-
-  console.log(barData);
-
-  // console.log(lineData[0].color);
-  const lineLegend = lineData.map(item => {
+  const lineLegend = lineData.map((line, index) => {
     return (
-      <div className="legend-item">
+      <div key={index} className="legend-item">
         <div
           className="line-marker marker"
           style={{
-            borderColor: item.color
+            borderColor: lineColors[index]
           }}
         />
-        <div className="item-name">{item.id}</div>
+        <div className="legend-item-name">{line.id}</div>
       </div>
     );
   });
   const barLegend = keys.map((key, index) => {
     return (
-      <div className="legend-item">
+      <div key={index} className="legend-item">
         <div
           className="bar-marker marker"
           style={{
             backgroundColor: barColors[index]
           }}
         />
-        <div className="item-name">{key}</div>
+        <div className="legend-item-name">{key}</div>
       </div>
     );
   });
@@ -75,7 +52,7 @@ function App({ keys, lineData, barData, lineYTickValues, barYTickValues }) {
 
   return (
     <div className="container">
-      <div className="title">Monthly Chart</div>
+      <div className="title">{chartTitle}</div>
       <div className="bar">
         {/* <div className="title">Monthly Chart</div> */}
         <ResponsiveBar
@@ -88,20 +65,6 @@ function App({ keys, lineData, barData, lineYTickValues, barYTickValues }) {
           groupMode="grouped"
           colors={barColors}
           enableLabel={false}
-          fill={[
-            {
-              match: {
-                id: "fries"
-              },
-              id: "dots"
-            },
-            {
-              match: {
-                id: "sandwich"
-              },
-              id: "lines"
-            }
-          ]}
           borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
           axisTop={null}
           axisRight={null}
@@ -117,7 +80,7 @@ function App({ keys, lineData, barData, lineYTickValues, barYTickValues }) {
             tickSize: 0,
             tickPadding: 3,
             tickRotation: 0,
-            legend: "MERTIC TONS",
+            legend: leftAxis,
             legendPosition: "middle",
             legendOffset: -40,
             tickValues: [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200]
@@ -126,32 +89,6 @@ function App({ keys, lineData, barData, lineYTickValues, barYTickValues }) {
           labelSkipWidth={12}
           labelSkipHeight={12}
           labelTextColor={'{ from: "color", modifiers: [["darker", 1.6]] }'}
-          // legends={[
-          //   {
-          //     dataFrom: "keys",
-          //     anchor: "bottom",
-          //     direction: "row",
-          //     justify: false,
-          //     translateX: 40,
-          //     translateY: 63,
-          //     itemsSpacing: 4,
-          //     itemWidth: 91,
-          //     itemHeight: 61,
-          //     itemDirection: "left-to-right",
-          //     itemOpacity: 0.85,
-          //     itemTextColor: "#ffffff",
-
-          //     symbolSize: 16,
-          //     effects: [
-          //       {
-          //         on: "hover",
-          //         style: {
-          //           itemOpacity: 1
-          //         }
-          //       }
-          //     ]
-          //   }
-          // ]}
           animate={true}
           motionStiffness={90}
           motionDamping={15}
@@ -173,7 +110,7 @@ function App({ keys, lineData, barData, lineYTickValues, barYTickValues }) {
             tickSize: 0,
             tickPadding: 3,
             tickRotation: 0,
-            legend: "US$ PER TON",
+            legend: rightAxis,
             legendOffset: 45,
             legendPosition: "middle",
             tickValues: [25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275]
@@ -194,8 +131,8 @@ function App({ keys, lineData, barData, lineYTickValues, barYTickValues }) {
         />
       </div>
       <div className="legend">
-        <div className="line-items">{lineLegend}</div>
-        <div className="bar-items">{barLegend}</div>
+        <div className="legend-line">{lineLegend}</div>
+        <div className="legend-bar">{barLegend}</div>
       </div>
     </div>
   );
